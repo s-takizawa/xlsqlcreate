@@ -1,5 +1,6 @@
 # xlsqlcreate
-A Python tool for creating SQL statement  by using Excel.
+A Python tool for creating SQL statement  by using Excel.<br>
+It supports Python 3.8 and openpyxl and uses standard libraries only.
 
 ## usage
 ### create template file
@@ -9,9 +10,9 @@ Input [base_sql] and [data] like this.
 Details are on [sample]sheet.
 
 ### execute xlsqlcreate.exe
-Execute xlsqlcreate.exe.(or xlsqlcreate.py)<br>
+Execute xlsqlcreate.exe(or xlsqlcreate.py).<br>
 Then it outputs a result in result_data/result_yyyyMMdd_HHMMSS.txt
 
 ### result
-Outputs below text.
+It outputs like the below text.<br>
 ![result](https://user-images.githubusercontent.com/16853785/109763078-e100c600-7c34-11eb-870f-ba82ddecda64.jpg)
