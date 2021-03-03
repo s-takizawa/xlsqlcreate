@@ -18,15 +18,18 @@ DATA_START_ROW = 3
 DATA_START_COL = 5
 
 # method
+
+
 def end_proc():
     """process end
     """
     input("please,press any key to end")
     exit()
 
+
 def main():
     """main process
-    """    
+    """
     # operation
     print('start create sql statement.')
 
@@ -58,7 +61,8 @@ def main():
         return
 
     # output file path
-    res_fname = RESULT_FILE_NAME.format(datetime.now().strftime('%Y%m%d_%H%M%S'))
+    res_fname = RESULT_FILE_NAME.format(
+        datetime.now().strftime('%Y%m%d_%H%M%S'))
     res_file_path = osp.join(current_dir, RESULT_FILE_DIR, res_fname)
 
     # create/write
@@ -68,11 +72,17 @@ def main():
             input_data_list = []
             # loop column unit
             for c in range(DATA_START_COL, data_end_col + 1):
-                input_data_list.append(str(ws.cell(row=r, column=c).value))
+                temp_val = str(ws.cell(row=r, column=c).value) if not ws.cell(
+                    row=r, column=c).value is None else str("")
+                input_data_list.append(temp_val)
 
             if len(input_data_list) > 0:
-                sql_stmt = base_sql.format(*input_data_list)
+                # check data: Skip if all characters are blank
+                if len(list(filter(lambda val: len(val) > 0, input_data_list))) == 0:
+                    continue
+
                 # write sql statement
+                sql_stmt = base_sql.format(*input_data_list)
                 f.write(sql_stmt + '\n')
 
     wb.close()
